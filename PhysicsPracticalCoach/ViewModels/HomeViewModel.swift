@@ -23,7 +23,7 @@ final class HomeViewModel {
 
     /// Every number here is computed live from `attempts`, refreshed via `refreshStats()`.
     var userStats: UserStats {
-        UserStatsCalculator.compute(attempts, profile: CurriculumProfiles.forCurriculum(curriculum))
+      UserStatsCalculator.compute(attempts: attempts, profile: CurriculumProfiles.forCurriculum(curriculum))
     }
 
     init(preferences: UserPreferences, attemptRepository: AttemptRepository) {
