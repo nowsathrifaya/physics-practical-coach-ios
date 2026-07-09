@@ -78,9 +78,9 @@ enum StudyNotesBank {
         StudyNote(
             id: "note_tabulation", category: .tabulation, title: "Column headings use a solidus, not brackets",
             rule: "Table and axis headings are written as quantity / unit, e.g. t / s \u{2014} never t (s).",
-            examples: "t / s, T\u00B2 / s\u00B2, V / V, I / A",
+            examples: "t / s, T\u{00B2} / s\u{00B2}, V / V, I / A",
             doNotDo: "'Time (s)' or 't(s)' \u{2014} brackets are not accepted in SEAB/Cambridge/WAEC marking.",
-            tip: "Think of it as algebra: if t = 23.4 s, then t / s = 23.4, a pure number \u2014 exactly what belongs in a data cell."
+            tip: "Think of it as algebra: if t = 23.4 s, then t / s = 23.4, a pure number \u{2014} exactly what belongs in a data cell."
         ),
         StudyNote(
             id: "note_graphplot", category: .graphPlotting, title: "Four marks in every graph question",
@@ -92,13 +92,13 @@ enum StudyNotesBank {
         StudyNote(
             id: "note_gradient", category: .gradient, title: "Measuring a gradient correctly",
             rule: "Pick two points ON the best-fit line (not data points), as far apart as possible, and draw a large right-angled triangle.",
-            examples: "gradient = (y\u2082 \u2212 y\u2081) / (x\u2082 \u2212 x\u2081), always quoted with units.",
+            examples: "gradient = (y\u{2082} \u{2212} y\u{2081}) / (x\u{2082} \u{2212} x\u{2081}), always quoted with units.",
             doNotDo: "Using two table values instead of points on the line; a triangle spanning less than half the line.",
-            tip: "Show your triangle and coordinates on the graph \u2014 examiners look for this explicitly."
+            tip: "Show your triangle and coordinates on the graph \u{2014} examiners look for this explicitly."
         ),
         StudyNote(
             id: "note_precautions", category: .precautions, title: "Precautions must be specific",
-            rule: "State the specific action and why it improves the result \u2014 not a generic 'be careful'.",
+            rule: "State the specific action and why it improves the result \u{2014} not a generic 'be careful'.",
             examples: "'Displace the pendulum bob by a small angle (< 10\u{00B0}) to maintain simple harmonic motion.'",
             doNotDo: "'Be careful', 'take accurate readings', 'repeat the experiment' with no detail.",
             tip: "Ask yourself: does this sentence tell someone exactly what to do differently?"
@@ -106,7 +106,7 @@ enum StudyNotesBank {
         StudyNote(
             id: "note_conclusions", category: .conclusions, title: "'Proportional' has a strict meaning",
             rule: "Only say 'directly proportional' when the best-fit line is straight AND passes through the origin.",
-            examples: "Straight line, non-zero y-intercept \u2192 'varies linearly with', not 'is proportional to'.",
+            examples: "Straight line, non-zero y-intercept \u{2192} 'varies linearly with', not 'is proportional to'.",
             doNotDo: "Claiming proportionality just because a graph looks like a line.",
             tip: "If the origin isn't shown on the axes, you can't confirm proportionality at all."
         ),
@@ -119,7 +119,7 @@ enum StudyNotesBank {
         ),
         StudyNote(
             id: "note_examformat", category: .examFormat, title: "Know your paper's mark distribution",
-            rule: "Each board splits marks differently across Planning, Measurement, Data Presentation, and Analysis/Evaluation \u2014 check your curriculum's marking scheme on the Home tab.",
+            rule: "Each board splits marks differently across Planning, Measurement, Data Presentation, and Analysis/Evaluation \u{2014} check your curriculum's marking scheme on the Home tab.",
             examples: "SEAB 6091: P ~6, MMO ~14, PDO ~10, ACE ~10 (40 total). WAEC/NECO: ~16-17 marks per experiment across 3 experiments.",
             doNotDo: "Spending equal time on every section regardless of its mark weight.",
             tip: "Budget your exam time roughly in proportion to each section's marks."
