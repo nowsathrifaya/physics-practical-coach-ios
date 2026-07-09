@@ -110,7 +110,7 @@ enum CurriculumProfiles {
             "Thermal measurement \u{2014} recurring",
             "Forces and moments \u{2014} recurring"
         ],
-        markingScheme: "Paper 5 tests Assessment Objective AO3 (Experimental skills and investigations) only \u{2014} no knowledge recall marks.\nUsually 4 questions (~20 min each for Q1\u20133, ~15 min for Q4); most need apparatus, one is data-based.\nMarks are awarded per question for: accurate readings, correct table/graph construction (units, scales, best-fit line), analysis and calculation, and evaluation (identifying limitations and suggesting improvements).\n\nNote: Cambridge Paper 6 (Alternative to Practical) tests the same AO3 skills via a written paper instead of hands-on apparatus.",
+        markingScheme: "Paper 5 tests Assessment Objective AO3 (Experimental skills and investigations) only \u{2014} no knowledge recall marks.\nUsually 4 questions (~20 min each for Q1\u{2013}3, ~15 min for Q4); most need apparatus, one is data-based.\nMarks are awarded per question for: accurate readings, correct table/graph construction (units, scales, best-fit line), analysis and calculation, and evaluation (identifying limitations and suggesting improvements).\n\nNote: Cambridge Paper 6 (Alternative to Practical) tests the same AO3 skills via a written paper instead of hands-on apparatus.",
         toleranceNote: "Cambridge allows \u{00B1}1 small division for analogue readings. Significant figures must match instrument precision.",
         flagEmoji: "\u{1F310}",
         levelTag: "IGCSE",
@@ -146,7 +146,7 @@ enum CurriculumProfiles {
             "Cooling curves / thermal experiments",
             "Pulley systems / inclined plane (mechanics)"
         ],
-        markingScheme: "WAEC Paper 3 has 3 compulsory experiments.\nEach experiment is marked out of ~16\u201317 marks:\n\u2022 Tabulation of results: 3\u20134 marks\n\u2022 Graph (correct axes, scale, points, line): 5\u20136 marks\n\u2022 Slope/gradient calculation: 2\u20133 marks\n\u2022 Precaution stated: 1\u20132 marks\n\u2022 Conclusion / deduction: 2\u20133 marks\n\nTotal: 50 marks",
+        markingScheme: "WAEC Paper 3 has 3 compulsory experiments.\nEach experiment is marked out of ~16\u{2013}17 marks:\n\u{2022} Tabulation of results: 3\u{2013}4 marks\n\u{2022} Graph (correct axes, scale, points, line): 5\u{2013}6 marks\n\u{2022} Slope/gradient calculation: 2\u{2013}3 marks\n\u{2022} Precaution stated: 1\u{2013}2 marks\n\u{2022} Conclusion / deduction: 2\u{2013}3 marks\n\nTotal: 50 marks",
         toleranceNote: "WAEC allows \u{00B1}1 division for analogue readings and wider graph tolerance than Cambridge. Precautions must be stated explicitly \u{2014} 1 mark each.",
         flagEmoji: "\u{1F30D}",
         levelTag: "SSCE",
@@ -182,7 +182,7 @@ enum CurriculumProfiles {
             "Moments \u{2014} balancing a metre rule",
             "Thermal \u{2014} specific heat or cooling"
         ],
-        markingScheme: "NECO Paper 3 offers 3 questions \u{2014} candidates answer any 2 (2 h 45 min total).\nMarking is similar to WAEC:\n\u2022 Readings/tabulation: 3\u20134 marks per experiment\n\u2022 Graph (scale, points, best-fit line): 5 marks\n\u2022 Gradient and use: 3 marks\n\u2022 Precaution: 1\u20132 marks\n\u2022 Conclusion: 2\u20133 marks\n\nTotal: 50 marks\n\nNote: NECO often requires students to state the instrument's least count.",
+        markingScheme: "NECO Paper 3 offers 3 questions \u{2014} candidates answer any 2 (2 h 45 min total).\nMarking is similar to WAEC:\n\u{2022} Readings/tabulation: 3\u{2013}4 marks per experiment\n\u{2022} Graph (scale, points, best-fit line): 5 marks\n\u{2022} Gradient and use: 3 marks\n\u{2022} Precaution: 1\u{2013}2 marks\n\u{2022} Conclusion: 2\u{2013}3 marks\n\nTotal: 50 marks\n\nNote: NECO often requires students to state the instrument's least count.",
         toleranceNote: "NECO tolerances are similar to WAEC \u{2014} \u{00B1}1 small division. Students must state the least count of each instrument used.",
         flagEmoji: "\u{1F30D}",
         levelTag: "SSCE",
