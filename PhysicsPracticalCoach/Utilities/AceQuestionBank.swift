@@ -77,7 +77,7 @@ enum AceQuestionBank {
             marks: 3, curricula: allBoards,
             questionText: "Plan an experiment to determine the spring constant k using slotted masses, a metre rule, and a clamp stand. Include measurements, how to find k, and one precaution.",
             modelAnswer: "Measurements: natural length L\u{2080}; new length L for each mass m; extension x = L \u{2212} L\u{2080}; at least 6 values.\nFinding k: plot F = mg vs x; k = gradient of best-fit line.\nPrecaution (any one): wait for spring to stop oscillating; do not exceed elastic limit; read rule at eye level.",
-            commonMistakes: "\u{2717} Not converting mass to force (F = mg).\n\u{2717} Fewer than 5\u20136 data points.\n\u{2717} Omitting the precaution.",
+            commonMistakes: "\u{2717} Not converting mass to force (F = mg).\n\u{2717} Fewer than 5\u{2013}6 data points.\n\u{2717} Omitting the precaution.",
             examinerTip: "Planning marks: procedure clarity, correct use of data, safety/accuracy precaution."
         ),
 
@@ -253,9 +253,9 @@ enum AceQuestionBank {
             id: "density_plan_01", topic: .density, skillArea: .planning, difficulty: .standard,
             marks: 3, curricula: allBoards,
             questionText: "Describe how to determine the density of an irregularly shaped stone that sinks in water.",
-            modelAnswer: "Apparatus: measuring cylinder, balance, water, string.\nMeasurements: mass m; V\u2081 (water); V\u2082 (water + stone); volume = V\u2082 \u{2212} V\u2081.\nCalculation: \u{03C1} = m / (V\u2082 \u{2212} V\u2081); consistent units.",
-            commonMistakes: "\u{2717} Not stating displacement method.\n\u{2717} Mixing g with m\u00B3.",
-            examinerTip: "Key marks: volume = V\u2082 \u{2212} V\u2081, \u{03C1} = m/V with consistent units."
+            modelAnswer: "Apparatus: measuring cylinder, balance, water, string.\nMeasurements: mass m; V\u{2081} (water); V\u{2082} (water + stone); volume = V\u{2082} \u{2212} V\u{2081}.\nCalculation: \u{03C1} = m / (V\u{2082} \u{2212} V\u{2081}); consistent units.",
+            commonMistakes: "\u{2717} Not stating displacement method.\n\u{2717} Mixing g with m\u{00B3}.",
+            examinerTip: "Key marks: volume = V\u{2082} \u{2212} V\u{2081}, \u{03C1} = m/V with consistent units."
         ),
 
         // MARK: - IGCSE-specific (Cambridge 0625)
@@ -306,8 +306,8 @@ enum AceQuestionBank {
         AceQuestion(
             id: "waec_pend_01", topic: .pendulum, skillArea: .pdo, difficulty: .standard,
             marks: 3, curricula: wn,
-            questionText: "In a WAEC pendulum experiment, T = 1.60 s for a given length.\n(a) Calculate T\u00B2.\n(b) State what the slope of the T\u00B2-L graph gives.\n(c) State TWO precautions.",
-            modelAnswer: "(a) T\u00B2 = 1.60\u00B2 = 2.56 s\u00B2\n(b) Slope = 4\u{03C0}\u{00B2}/g \u{2192} value of g = 4\u{03C0}\u{00B2}/slope\n(c) Any two: displace bob by small angle (< 10\u{00B0}); time 20 oscillations and divide; do not let string touch stand; repeat timing and average.",
+            questionText: "In a WAEC pendulum experiment, T = 1.60 s for a given length.\n(a) Calculate T\u{00B2}.\n(b) State what the slope of the T\u{00B2}-L graph gives.\n(c) State TWO precautions.",
+            modelAnswer: "(a) T\u{00B2} = 1.60\u{00B2} = 2.56 s\u{00B2}\n(b) Slope = 4\u{03C0}\u{00B2}/g \u{2192} value of g = 4\u{03C0}\u{00B2}/slope\n(c) Any two: displace bob by small angle (< 10\u{00B0}); time 20 oscillations and divide; do not let string touch stand; repeat timing and average.",
             commonMistakes: "\u{2717} Squaring T incorrectly.\n\u{2717} Stating slope = g directly.\n\u{2717} Precaution too vague.",
             examinerTip: "WAEC always asks for precautions \u{2014} must be specific, e.g. 'displace bob by small angle to ensure SHM'."
         ),
@@ -339,7 +339,7 @@ enum AceQuestionBank {
             id: "waec_plan_01", topic: .generalPlanning, skillArea: .planning, difficulty: .challenging,
             marks: 4, curricula: wn,
             questionText: "A student investigates T vs L for a pendulum.\n(a) How is T measured accurately?\n(b) What graph gives a straight line?\n(c) How is g found from the graph?\n(d) State TWO precautions.",
-            modelAnswer: "(a) Time 20 complete oscillations; T = total/20; repeat and average.\n(b) Plot T\u00B2 (y) vs L (x) \u{2014} straight line through origin.\n(c) Gradient = 4\u{03C0}\u{00B2}/g \u{2192} g = 4\u{03C0}\u{00B2}/gradient.\n(d) Any two: small angle (< 10\u{00B0}); same bob; count carefully; avoid draughts; fix string firmly.",
+            modelAnswer: "(a) Time 20 complete oscillations; T = total/20; repeat and average.\n(b) Plot T\u{00B2} (y) vs L (x) \u{2014} straight line through origin.\n(c) Gradient = 4\u{03C0}\u{00B2}/g \u{2192} g = 4\u{03C0}\u{00B2}/gradient.\n(d) Any two: small angle (< 10\u{00B0}); same bob; count carefully; avoid draughts; fix string firmly.",
             commonMistakes: "\u{2717} Plotting T vs L (curve, not straight line).\n\u{2717} Not dividing by 20.\n\u{2717} Vague precautions.",
             examinerTip: "WAEC marks: (1) timing method, (2) graph axes, (3) use of gradient, (4) specific precautions. Cover each explicitly."
         ),
@@ -358,7 +358,7 @@ enum AceQuestionBank {
             id: "neco_ace_01", topic: .ohmsLaw, skillArea: .ace, difficulty: .standard,
             marks: 4, curricula: [.neco],
             questionText: "A student recorded V (V): 1.0, 1.5, 2.0, 2.5, 3.0 and I (A): 0.20, 0.30, 0.40, 0.50, 0.62.\n(a) Identify the likely anomalous reading.\n(b) Find resistance R from the V-I graph gradient.\n(c) State one source of error.",
-            modelAnswer: "(a) I = 0.62 A at V = 3.0 V is slightly high \u{2014} pattern suggests 0.60 A.\n(b) R = \u{0394}V/\u{0394}I = (3.0\u22121.0)/(0.60\u22120.20) = 2.0/0.40 = 5.0 \u{03A9} (use best-fit line, exclude anomaly).\n(c) Any one: contact resistance; wire heating up; parallax when reading meters.",
+            modelAnswer: "(a) I = 0.62 A at V = 3.0 V is slightly high \u{2014} pattern suggests 0.60 A.\n(b) R = \u{0394}V/\u{0394}I = (3.0\u{2212}1.0)/(0.60\u{2212}0.20) = 2.0/0.40 = 5.0 \u{03A9} (use best-fit line, exclude anomaly).\n(c) Any one: contact resistance; wire heating up; parallax when reading meters.",
             commonMistakes: "\u{2717} Reading R from a single point (V/I) instead of graph gradient.\n\u{2717} Not checking for anomaly before drawing line.",
             examinerTip: "NECO resistance questions: check for anomalies first, graph second, gradient for R \u{2014} not a single V/I ratio."
         ),
@@ -366,8 +366,8 @@ enum AceQuestionBank {
             id: "neco_plan_01", topic: .spring, skillArea: .planning, difficulty: .standard,
             marks: 5, curricula: [.neco],
             questionText: "A student uses a helical spring to verify Hooke's Law.\n(a) State the hypothesis.\n(b) Describe the procedure.\n(c) How is Hooke's Law verified from the results?\n(d) State the spring constant in terms of the graph.\n(e) State TWO precautions.",
-            modelAnswer: "(a) Extension is directly proportional to applied force, provided elastic limit is not exceeded.\n(b) Clamp spring; measure natural length L\u2080; add masses in 50 g steps; record L; e = L \u{2212} L\u2080; tabulate F = mg and e for \u{2265}6 loads.\n(c) Plot e vs F \u{2014} straight line through origin \u{2192} Hooke's Law verified.\n(d) k = 1/gradient (e on y, F on x); unit N/m.\n(e) Any two: do not exceed elastic limit; allow spring to settle before reading; read scale at eye level.",
-            commonMistakes: "\u{2717} Hypothesis misses the word 'proportional'.\n\u{2717} k = gradient without specifying axis orientation.\n\u{2717} Only 3\u20134 data points.",
+            modelAnswer: "(a) Extension is directly proportional to applied force, provided elastic limit is not exceeded.\n(b) Clamp spring; measure natural length L\u{2080}; add masses in 50 g steps; record L; e = L \u{2212} L\u{2080}; tabulate F = mg and e for \u{2265}6 loads.\n(c) Plot e vs F \u{2014} straight line through origin \u{2192} Hooke's Law verified.\n(d) k = 1/gradient (e on y, F on x); unit N/m.\n(e) Any two: do not exceed elastic limit; allow spring to settle before reading; read scale at eye level.",
+            commonMistakes: "\u{2717} Hypothesis misses the word 'proportional'.\n\u{2717} k = gradient without specifying axis orientation.\n\u{2717} Only 3\u{2013}4 data points.",
             examinerTip: "NECO planning: hypothesis (1), procedure (2), verification (1), spring constant (1), precautions (1 each). Answer each part explicitly."
         ),
 
@@ -384,17 +384,17 @@ enum AceQuestionBank {
         AceQuestion(
             id: "sk_prec_02", topic: .generalMeasurement, skillArea: .mmo, difficulty: .basic,
             marks: 2, curricula: allBoards,
-            questionText: "State the precision each instrument must be recorded to, and give one example:\n(a) Ammeter f.s.d. 1 A\n(b) Thermometer (\u221210 to 110\u00B0C)\n(c) Measuring cylinder 100 cm\u00B3",
-            modelAnswer: "(a) 0.01 A (2 d.p.) e.g. 0.44 A or 0.50 A\n(b) 0.5\u00B0C (1 d.p.) e.g. 37.0\u00B0C or 21.5\u00B0C\n(c) 0.5 cm\u00B3 (1 d.p.) e.g. 65.5 cm\u00B3 or 80.0 cm\u00B3",
-            commonMistakes: "\u{2717} Ammeter as '0.4 A' \u{2014} must be 0.40 A\n\u{2717} Thermometer as '37\u00B0C' \u{2014} must be 37.0\u00B0C\n\u{2717} Cylinder as '65 cm\u00B3' \u{2014} must be 65.5 or 65.0 cm\u00B3",
+            questionText: "State the precision each instrument must be recorded to, and give one example:\n(a) Ammeter f.s.d. 1 A\n(b) Thermometer (\u{2212}10 to 110\u{00B0}C)\n(c) Measuring cylinder 100 cm\u{00B3}",
+            modelAnswer: "(a) 0.01 A (2 d.p.) e.g. 0.44 A or 0.50 A\n(b) 0.5\u{00B0}C (1 d.p.) e.g. 37.0\u{00B0}C or 21.5\u{00B0}C\n(c) 0.5 cm\u{00B3} (1 d.p.) e.g. 65.5 cm\u{00B3} or 80.0 cm\u{00B3}",
+            commonMistakes: "\u{2717} Ammeter as '0.4 A' \u{2014} must be 0.40 A\n\u{2717} Thermometer as '37\u{00B0}C' \u{2014} must be 37.0\u{00B0}C\n\u{2717} Cylinder as '65 cm\u{00B3}' \u{2014} must be 65.5 or 65.0 cm\u{00B3}",
             examinerTip: "Scaled readings (ammeter, thermometer) \u{2192} half smallest division. Measurements (ruler) \u{2192} smallest division."
         ),
         AceQuestion(
             id: "sk_sf_01", topic: .generalMeasurement, skillArea: .pdo, difficulty: .standard,
             marks: 2, curricula: allBoards,
-            questionText: "A student calculates density using mass = 120.45 g and volume = 45.8 cm\u00B3.\n(a) How many significant figures should the answer have?\n(b) Calculate density to the correct s.f.",
-            modelAnswer: "(a) 3 significant figures \u{2014} volume (45.8 cm\u00B3) has fewest s.f.\n(b) D = 120.45 / 45.8 = 2.629\u2026 \u{2248} 2.63 g/cm\u00B3 (3 s.f.)",
-            commonMistakes: "\u{2717} D = 2.629 g/cm\u00B3 \u{2014} more s.f. than least precise measurement\n\u{2717} D = 2.6 g/cm\u00B3 \u{2014} too few s.f.",
+            questionText: "A student calculates density using mass = 120.45 g and volume = 45.8 cm\u{00B3}.\n(a) How many significant figures should the answer have?\n(b) Calculate density to the correct s.f.",
+            modelAnswer: "(a) 3 significant figures \u{2014} volume (45.8 cm\u{00B3}) has fewest s.f.\n(b) D = 120.45 / 45.8 = 2.629\u{2026} \u{2248} 2.63 g/cm\u{00B3} (3 s.f.)",
+            commonMistakes: "\u{2717} D = 2.629 g/cm\u{00B3} \u{2014} more s.f. than least precise measurement\n\u{2717} D = 2.6 g/cm\u{00B3} \u{2014} too few s.f.",
             examinerTip: "Identify measurement with FEWEST s.f. \u{2014} answer matches that. Mass 5 s.f., volume 3 s.f. \u{2192} answer 3 s.f."
         ),
         AceQuestion(
@@ -409,7 +409,7 @@ enum AceQuestionBank {
             id: "sk_graph_01", topic: .generalGraph, skillArea: .pdo, difficulty: .standard,
             marks: 4, curricula: allBoards,
             questionText: "A common exam-technique checklist breaks graph-plotting marks into four areas. State these four areas.",
-            modelAnswer: "1. Best-fit line: thin continuous line, balanced errors on both sides; not dot-to-dot.\n2. Labeled axes: quantity / unit (solidus), matching table headings.\n3. Correct plotting: crosses (\u00D7) of reasonable size, plotted accurately.\n4. Right scale: multiples of 2 or 5; data spans 5\u00D77 or 7\u00D75 big squares (\u{2265}2/3 of paper); no intervals of 3 or 7.",
+            modelAnswer: "1. Best-fit line: thin continuous line, balanced errors on both sides; not dot-to-dot.\n2. Labeled axes: quantity / unit (solidus), matching table headings.\n3. Correct plotting: crosses (\u{00D7}) of reasonable size, plotted accurately.\n4. Right scale: multiples of 2 or 5; data spans 5\u{00D7}7 or 7\u{00D7}5 big squares (\u{2265}2/3 of paper); no intervals of 3 or 7.",
             commonMistakes: "\u{2717} Dot-to-dot instead of best-fit line\n\u{2717} Axes labeled with brackets\n\u{2717} Scale intervals of 3 or 7\n\u{2717} Data points marked as dots not crosses",
             examinerTip: "These 4 criteria are checked independently. Score 3/4 even if the line is slightly off, as long as axes, points, and scale are correct."
         ),
@@ -417,7 +417,7 @@ enum AceQuestionBank {
             id: "sk_grad_01", topic: .generalGraph, skillArea: .pdo, difficulty: .standard,
             marks: 4, curricula: allBoards,
             questionText: "Describe the 4 steps to calculate the gradient of a straight-line graph.",
-            modelAnswer: "Step 1: Select two points ON the best-fit line, as far apart as possible. Mark with \u00D7.\nStep 2: Label both with coordinates (x\u2081, y\u2081) and (x\u2082, y\u2082).\nStep 3: Draw a dotted right-angled triangle spanning at least half the line.\nStep 4: gradient = (y\u2082 \u{2212} y\u2081)/(x\u2082 \u{2212} x\u2081) with units (y-unit / x-unit).",
+            modelAnswer: "Step 1: Select two points ON the best-fit line, as far apart as possible. Mark with \u{00D7}.\nStep 2: Label both with coordinates (x\u{2081}, y\u{2081}) and (x\u{2082}, y\u{2082}).\nStep 3: Draw a dotted right-angled triangle spanning at least half the line.\nStep 4: gradient = (y\u{2082} \u{2212} y\u{2081})/(x\u{2082} \u{2212} x\u{2081}) with units (y-unit / x-unit).",
             commonMistakes: "\u{2717} Using data-table points instead of points on the line\n\u{2717} Small triangle (< half the line)\n\u{2717} No units on gradient\n\u{2717} No dotted triangle shown on graph",
             examinerTip: "Showing dotted triangle and coordinates is COMPULSORY. Triangle must span \u{2265} half the drawn line. Always include the unit."
         ),
@@ -433,7 +433,7 @@ enum AceQuestionBank {
             id: "sk_plan_01", topic: .generalPlanning, skillArea: .planning, difficulty: .challenging,
             marks: 6, curricula: allBoards,
             questionText: "Design an experiment to investigate how period T of a simple pendulum depends on length L. Include: (a) variables, (b) how T is measured, (c) 6 values of L, (d) table headings, (e) graph and how to find g, (f) one precaution.",
-            modelAnswer: "(a) IV: L/cm; DV: T/s; CV: mass of bob, angle (<10\u{00B0}), same location.\n(b) Time 20 oscillations; T = t\u2082\u2080/20; repeat and average.\n(c) L = 10.0, 20.0, 30.0, 40.0, 50.0, 60.0 cm.\n(d) L/cm | t\u2082\u2080(1)/s | t\u2082\u2080(2)/s | t\u2090\u1D65\u2091/s | T/s | T\u00B2/s\u00B2\n(e) Plot T\u00B2/s\u00B2 vs L/cm \u{2192} straight line through origin confirms T\u00B2\u{221D}L; gradient = 4\u{03C0}\u{00B2}/g \u{2192} g = 4\u{03C0}\u{00B2}/gradient.\n(f) Ensured angle < 10\u{00B0} to maintain SHM and avoid affecting period.",
+            modelAnswer: "(a) IV: L/cm; DV: T/s; CV: mass of bob, angle (<10\u{00B0}), same location.\n(b) Time 20 oscillations; T = t\u{2082}\u{2080}/20; repeat and average.\n(c) L = 10.0, 20.0, 30.0, 40.0, 50.0, 60.0 cm.\n(d) L/cm | t\u{2082}\u{2080}(1)/s | t\u{2082}\u{2080}(2)/s | t\u{2090}\u{1D65}\u{2091}/s | T/s | T\u{00B2}/s\u{00B2}\n(e) Plot T\u{00B2}/s\u{00B2} vs L/cm \u{2192} straight line through origin confirms T\u{00B2}\u{221D}L; gradient = 4\u{03C0}\u{00B2}/g \u{2192} g = 4\u{03C0}\u{00B2}/gradient.\n(f) Ensured angle < 10\u{00B0} to maintain SHM and avoid affecting period.",
             commonMistakes: "\u{2717} Not specifying 6 exact L values\n\u{2717} Bracket notation in headings instead of solidus\n\u{2717} Plotting T vs L (gives curve, not line)\n\u{2717} Stating g = gradient instead of g = 4\u{03C0}\u{00B2}/gradient\n\u{2717} Precaution without reason",
             examinerTip: "Planning: variables (1), measurement (1), 6 values (1), table (1), graph+gradient (2), precaution (1). Address each mark point explicitly."
         )
