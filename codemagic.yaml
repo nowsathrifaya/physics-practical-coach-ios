@@ -1,29 +1,49 @@
 workflows:
-  ios-build:
-    name: iOS Build (No Signing)
+  ios-release:
+    name: Physics Practical Coach - iOS Release
     max_build_duration: 60
     instance_type: mac_mini_m2
 
+    integrations:
+      app_store_connect: Physics Practical Exam Coach
+
     environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.physicscoach.app
+
       vars:
+        BUNDLE_ID: "com.physicscoach.app"
         XCODE_SCHEME: "PhysicsPracticalCoach"
+
       xcode: latest
 
     scripts:
       - name: Install XcodeGen
-        script: brew install xcodegen
+        script: |
+          brew install xcodegen
 
       - name: Generate Xcode project
-        script: xcodegen generate
-
-      - name: Build project (No Code Signing)
         script: |
-          xcodebuild \
-            -project PhysicsPracticalCoach.xcodeproj \
-            -scheme "$XCODE_SCHEME" \
-            -sdk iphonesimulator \
-            CODE_SIGNING_ALLOWED=NO \
-            build
+          xcodegen generate
+
+      - name: Set up code signing
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
+          keychain add-certificates
+          xcode-project use-profiles
+
+      - name: Build IPA
+        script: |
+          xcode-project build-ipa \
+            --project PhysicsPracticalCoach.xcodeproj \
+            --scheme "$XCODE_SCHEME"
 
     artifacts:
-      - /tmp/xcodebuild_logs/*.log
+      - build/ios/ipa/*.ipa
+
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
