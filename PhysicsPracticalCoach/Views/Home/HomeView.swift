@@ -9,8 +9,19 @@
 
 import SwiftUI
 
+/// Destination for the "Random Practice" quick action, which on Android
+/// picks uniformly at random among: a random apparatus, a random graph
+/// type, or the ACE list — re-rolled fresh each tap.
+enum RandomPracticeDestination: Hashable {
+    case apparatus(ApparatusType)
+    case graph(GraphCoachType)
+    case aceList
+}
+
 struct HomeView: View {
     @Bindable var homeViewModel: HomeViewModel
+    @Environment(\.modelContext) private var modelContext
+    @State private var randomDestination: RandomPracticeDestination?
 
     private var profile: CurriculumProfile { CurriculumProfiles.forCurriculum(homeViewModel.curriculum) }
 
@@ -22,6 +33,8 @@ struct HomeView: View {
                 ContinueLearningCard(homeViewModel: homeViewModel, profile: profile)
 
                 statsRow
+
+                quickActionsRow
 
                 Text("Quick actions")
                     .font(.title3.bold())
@@ -58,6 +71,16 @@ struct HomeView: View {
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear { homeViewModel.refreshStats() }
+        .navigationDestination(item: $randomDestination) { destination in
+            switch destination {
+            case .apparatus(let type):
+                ApparatusPracticeContainerView(apparatusType: type, curriculum: homeViewModel.curriculum)
+            case .graph(let type):
+                GraphCoachPracticeContainerView(graphType: type, curriculum: homeViewModel.curriculum)
+            case .aceList:
+                AceListView(curriculum: homeViewModel.curriculum)
+            }
+        }
     }
 
     private var header: some View {
@@ -77,6 +100,44 @@ struct HomeView: View {
             StatPill(value: "\(stats.totalPoints)", label: "Points", systemImage: "star.fill")
             StatPill(value: "\(stats.accuracyPercent)%", label: "Accuracy", systemImage: "target")
         }
+    }
+
+    /// Mirrors Android's Home top-row action cards: Random Practice (rolls a
+    /// fresh random apparatus/graph/ACE destination each tap) and Mock Exam
+    /// (jumps straight into a timed ACE session sized to this curriculum's
+    /// paper duration). "Last Experiment" is covered by `ContinueLearningCard`
+    /// above rather than duplicated here.
+    private var quickActionsRow: some View {
+        HStack(spacing: 12) {
+            Button {
+                randomDestination = rollRandomPracticeDestination()
+            } label: {
+                QuickActionCard(title: "Random\nPractice", subtitle: "", systemImage: "die.face.5.fill", tint: Color(hex: "#0F5A4F"))
+            }
+            .buttonStyle(.plain)
+
+            NavigationLink {
+                AcePracticeSessionView(
+                    repository: AttemptRepository(modelContext: modelContext),
+                    curriculum: homeViewModel.curriculum, filterTopic: nil, filterSkill: nil,
+                    isMockExam: true, mockExamMinutes: profile.durationMinutes
+                )
+            } label: {
+                QuickActionCard(title: "Mock\nExam", subtitle: "\(profile.durationMinutes) min timed", systemImage: "timer", tint: Color(hex: "#9B51E0"))
+            }
+        }
+    }
+
+    private func rollRandomPracticeDestination() -> RandomPracticeDestination {
+        var options: [() -> RandomPracticeDestination] = []
+        if !profile.apparatus.isEmpty {
+            options.append { .apparatus(profile.apparatus.randomElement()!) }
+        }
+        if !profile.graphTypes.isEmpty {
+            options.append { .graph(profile.graphTypes.randomElement()!) }
+        }
+        options.append { .aceList }
+        return options.randomElement()!()
     }
 
     private var curriculumSummary: some View {
@@ -133,6 +194,12 @@ private struct ContinueLearningCard: View {
                 } label: {
                     ContinueCardBody(title: "Continue ACE practice", systemImage: "arrow.forward.circle.fill")
                 }
+            case .simulationLab(let type):
+                NavigationLink {
+                    labDestination(for: type)
+                } label: {
+                    ContinueCardBody(title: "Continue: \(label)", systemImage: "arrow.forward.circle.fill")
+                }
             case .none:
                 NavigationLink {
                     ApparatusListView(profile: profile)
@@ -142,6 +209,25 @@ private struct ContinueLearningCard: View {
             }
         }
         .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private func labDestination(for type: SimulationType) -> some View {
+        let repository = AttemptRepository(modelContext: modelContext)
+        switch type {
+        case .pendulum:
+            PendulumLabView(curriculum: homeViewModel.curriculum, repository: repository)
+        case .springExtension:
+            SpringLabView(curriculum: homeViewModel.curriculum, repository: repository)
+        case .ohmsLaw:
+            OhmsLawLabView(curriculum: homeViewModel.curriculum, repository: repository)
+        case .densityDisplacement:
+            DensityLabView(curriculum: homeViewModel.curriculum, repository: repository)
+        case .moments:
+            MomentsLabView(curriculum: homeViewModel.curriculum, repository: repository)
+        default:
+            SimulationListView(profile: profile)
+        }
     }
 }
 

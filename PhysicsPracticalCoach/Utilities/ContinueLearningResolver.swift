@@ -2,10 +2,12 @@
 //  ContinueLearningResolver.swift
 //  PhysicsPracticalCoach
 //
-//  Port of `domain.stats.ContinueLearningResolver.kt`. Simulations aren't
-//  graded, so they never appear in the attempts table — "Continue Learning"
-//  and "Last Experiment" can only ever resolve to Apparatus, Graph, or ACE
-//  practice, which matches what's actually recorded.
+//  Port of `domain.stats.ContinueLearningResolver.kt`, extended for the new
+//  Lab experiment framework: since Lab sessions (Pendulum, and every future
+//  drag-and-drop experiment) now record a graded `Attempt` — unlike the old
+//  ungraded exploratory simulations — "Continue Learning" needs to be able
+//  to route back into a specific Lab experiment too, not just Apparatus,
+//  Graph, and ACE practice.
 //
 
 import Foundation
@@ -13,6 +15,7 @@ import Foundation
 enum ContinueTarget: Hashable {
     case apparatus(ApparatusType)
     case graph(GraphCoachType)
+    case simulationLab(SimulationType)
     case acePractice
     case none
 }
@@ -29,6 +32,11 @@ enum ContinueLearningResolver {
         case AttemptMode.graphCoach.rawValue:
             if let type = GraphCoachType.allCases.first(where: { $0.label == attempt.target }) {
                 return .graph(type)
+            }
+            return .none
+        case AttemptMode.simulationLab.rawValue:
+            if let type = SimulationType.allCases.first(where: { $0.label == attempt.target }) {
+                return .simulationLab(type)
             }
             return .none
         case "ACE_PRACTICE", "MOCK_EXAM":

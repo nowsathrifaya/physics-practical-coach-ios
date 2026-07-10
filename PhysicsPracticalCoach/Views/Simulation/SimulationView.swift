@@ -2,22 +2,30 @@
 //  SimulationView.swift
 //  PhysicsPracticalCoach
 //
-//  Replaces `SimulationListFragment` + the 12 per-experiment simulation
-//  fragments. Simulations aren't graded (no attempt is recorded — matches
-//  Android, see `ContinueLearningResolver`), so this screen is exploratory:
-//  drag a slider, watch the apparatus respond in real time.
+//  Replaces `SimulationListFragment` + the per-experiment simulation
+//  fragments. iOS is now the reference implementation for every new
+//  interactive "Lab" experiment — see `Framework/` for the shared
+//  scaffold/data-table/feedback components, and `PendulumLabView.swift` for
+//  the original fully worked reference template (drag-and-drop apparatus,
+//  randomised task, multi-trial data table, exam-accurate grading).
 //
-//  The Pendulum simulation is fully implemented as the flagship native
-//  Canvas + animation example. The remaining 11 use `GenericSimulationView`,
-//  a working slider-driven placeholder with the correct physics formula and
-//  description already wired up — bespoke Canvas art for each is the next
-//  increment (see project notes).
+//  Built on the Lab framework so far: Pendulum, Hooke's Law (Spring),
+//  Ohm's Law, and Density by Displacement — see `LAB_FRAMEWORK.md` for the
+//  architecture and the full experiment-by-experiment status. The
+//  remaining curriculum simulations use `GenericSimulationView`, a working
+//  slider-driven placeholder with the correct physics formula and
+//  description already wired up, pending conversion to the Lab pattern.
 //
 
 import SwiftUI
 
 struct SimulationListView: View {
     let profile: CurriculumProfile
+    @Environment(\.modelContext) private var modelContext
+
+    /// Experiment types that have a full Lab-framework build. Anything not
+    /// in this set still routes to the generic slider shell.
+    private static let labBuiltTypes: Set<SimulationType> = [.pendulum, .springExtension, .ohmsLaw, .densityDisplacement, .moments]
 
     var body: some View {
         List(profile.simulations) { type in
@@ -25,7 +33,15 @@ struct SimulationListView: View {
                 simulationDestination(for: type)
             } label: {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(type.label).font(.headline)
+                    HStack(spacing: 6) {
+                        Text(type.label).font(.headline)
+                        if Self.labBuiltTypes.contains(type) {
+                            Text("LAB").font(.caption2.weight(.bold))
+                                .padding(.horizontal, 6).padding(.vertical, 2)
+                                .background(Color.accentColor.opacity(0.15), in: Capsule())
+                                .foregroundStyle(Color.accentColor)
+                        }
+                    }
                     Text(type.descriptionText).font(.caption).foregroundStyle(.secondary).lineLimit(2)
                 }
                 .padding(.vertical, 4)
@@ -36,71 +52,29 @@ struct SimulationListView: View {
 
     @ViewBuilder
     private func simulationDestination(for type: SimulationType) -> some View {
+        let repository = AttemptRepository(modelContext: modelContext)
         switch type {
         case .pendulum:
-            PendulumSimulationView()
+            PendulumLabView(curriculum: profile.curriculum, repository: repository)
+        case .springExtension:
+            SpringLabView(curriculum: profile.curriculum, repository: repository)
+        case .ohmsLaw:
+            OhmsLawLabView(curriculum: profile.curriculum, repository: repository)
+        case .densityDisplacement:
+            DensityLabView(curriculum: profile.curriculum, repository: repository)
+        case .moments:
+            MomentsLabView(curriculum: profile.curriculum, repository: repository)
         default:
             GenericSimulationView(type: type)
         }
     }
 }
 
-/// Fully interactive pendulum: dragging the length slider updates both the
-/// live period readout (T = 2\u{03C0}\u{221A}(L/g)) and an animated swinging bob drawn
-/// with `Canvas` + `TimelineView`, matching the Android `PendulumSimulationView`.
-struct PendulumSimulationView: View {
-    @State private var lengthM: Double = 0.5
-
-    private var period: Double { 2 * .pi * (lengthM / 9.81).squareRoot() }
-
-    var body: some View {
-        VStack(spacing: 20) {
-            TimelineView(.animation) { timeline in
-                Canvas { context, size in
-                    let pivot = CGPoint(x: size.width / 2, y: 16)
-                    let maxStringLength = size.height - 60
-                    let stringLength = CGFloat(min(lengthM / 1.0, 1.0)) * maxStringLength + 40
-
-                    let elapsed = timeline.date.timeIntervalSinceReferenceDate
-                    let angle = (.pi / 8) * sin(elapsed * (2 * .pi / max(period, 0.2)))
-
-                    let bobPosition = CGPoint(
-                        x: pivot.x + stringLength * CGFloat(sin(angle)),
-                        y: pivot.y + stringLength * CGFloat(cos(angle))
-                    )
-
-                    var string = Path()
-                    string.move(to: pivot)
-                    string.addLine(to: bobPosition)
-                    context.stroke(string, with: .color(.secondary), lineWidth: 1.5)
-
-                    context.fill(Path(ellipseIn: CGRect(x: pivot.x - 5, y: pivot.y - 5, width: 10, height: 10)), with: .color(.primary))
-                    context.fill(Path(ellipseIn: CGRect(x: bobPosition.x - 14, y: bobPosition.y - 14, width: 28, height: 28)), with: .color(.blue))
-                }
-            }
-            .frame(height: 260)
-            .frame(maxWidth: .infinity)
-            .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Length: \(String(format: "%.2f", lengthM)) m")
-                Slider(value: $lengthM, in: 0.1...1.0)
-                Text("Period T = \(String(format: "%.2f", period)) s")
-                    .font(.headline)
-                Text("T = 2\u{03C0}\u{221A}(L/g)")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .padding(20)
-        .navigationTitle(SimulationType.pendulum.label)
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-/// Working slider-driven simulation shell for the remaining 11 experiment
-/// types. Each has its correct governing formula and description already
-/// wired from `SimulationType`; bespoke apparatus artwork is a follow-up.
+/// Working slider-driven simulation shell for the experiment types not yet
+/// rebuilt as Lab experiments. Each has its correct governing formula and
+/// description already wired from `SimulationType`; converting each to the
+/// drag-and-drop Lab pattern (see `LAB_FRAMEWORK.md`) is the planned next
+/// step for every one of these, in curriculum priority order.
 struct GenericSimulationView: View {
     let type: SimulationType
     @State private var control: Double = 0.5

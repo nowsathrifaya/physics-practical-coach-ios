@@ -216,6 +216,11 @@ enum SimulationType: String, CaseIterable, Codable, Identifiable {
 enum AttemptMode: String, Codable {
     case apparatusPractice = "APPARATUS_PRACTICE"
     case graphCoach = "GRAPH_COACH"
+    case acePractice = "ACE_PRACTICE"
+    /// A completed interactive lab experiment session (Pendulum, and every
+    /// future drag-and-drop simulation) — distinct from the old ungraded
+    /// exploratory simulations, which never recorded an attempt at all.
+    case simulationLab = "SIMULATION_LAB"
 }
 
 // MARK: - Common mistake coaching
